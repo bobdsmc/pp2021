@@ -98,18 +98,18 @@ def option():
         print("    +> 0. Type '0' ('zero') to quit")
 
         choose = input("      => Your option: ")
+        if (choose == "0"):
+            break
         if (choose == "1"):
-            Information()
+            add_Info()
         if (choose == "2"):
-            mark_Course()
+            marking()
         if (choose == "3"):
             show_Student()
         if (choose == "4"):
             show_Course()
         if (choose == "5"):
             show_Marks()
-        if (choose == "0"):
-            break
 
 # Information()
 # # show_Student()
