@@ -11,26 +11,10 @@ class Std_Info():
         self.s_Name = s_Name
         self.s_DoB = s_DoB
 
-    def set_s_ID(self, s_ID):
-        self.s_ID = s_ID
-
-    def get_ID(self):
-        return self.s_ID
-
-    def set_s_Name(self, s_Name):
-        self.s_Name = s_Name
-
-    def get_Name(self):
-        return self.s_Name
-
-    def set_s_DoB(self, s_DoB):
-        self.s_DoB = s_DoB
-
-    def get_DoB(self):
-        return self.s_DoB
-    
-    print("Student ID: {0};" + "\n" + "Student Name: {1};" + "\n" + "Student DoB: {2}".format(self.s_ID, self.s_Name, self.s_DoB))
-    
+    def display(self):
+        print(self.s_ID,end = "\t\t")
+        print(self.s_Name, end = "\t\t")
+        print(self.s_Dob)
 
 
 class Course_Info():
@@ -40,8 +24,9 @@ class Course_Info():
 
     print(self.c_ID, self.c_Name)
 
-    def get_c_ID(self):
-        return self.c_ID
+    def display(self):
+        print(self.c_ID, end = "\t\t")
+        print(self.c_Name)
 
 class mark_Course():
     
@@ -51,9 +36,10 @@ class mark_Course():
 
     def setMark(self, M):
         self.M = M
-
-    def show_M(self):
+    
+    def display(self):
         print(self.M)
+
 
 def add_Info():
     # Input Student information ##############################
