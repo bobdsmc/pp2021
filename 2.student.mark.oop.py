@@ -22,8 +22,6 @@ class Course_Info():
         self.c_ID = c_ID
         self.c_Name = c_Name
 
-    print(self.c_ID, self.c_Name)
-
     def display(self):
         print(self.c_ID, end = "\t\t")
         print(self.c_Name)
