@@ -1,4 +1,5 @@
 import math
+import curses
 
 student = []
 course = []
@@ -70,7 +71,7 @@ class mark_Course():
         return self.c_ID
     def get_mark(self):
         return self.mark
-
+        
 
 def add_Info():
     # Input Student information ##############################
@@ -128,6 +129,30 @@ def show_Mark():
         if (mark_Course.s_ID == s_ID):
             mark_Course.show_M()
 
+class averageGPA():
+def __init__(self,id,name,gpa):
+    self.id = id
+    self.name = name
+    self.gpa = gpa
+    
+    def display(self):
+        print(self.id, end = "\t\t")
+        print(self.name, end = "\t\t")
+        print(self.gpa)
+        
+def averageGPA():
+    sum_credit = 0
+    total_mark = 0
+    for i in range(len(student)):
+        for j in range(len(course)):
+            total_mark += mark[i][j].get_mark * course[j].get_credit
+            sum_credit = course[j].get_credit
+    averageGPA = math.floor((total_mark/sum_credit * 10)/10)
+    return averageGPA
+
+    gpa = []
+    gpa +=[averageGPA()]
+    gpa.sort()
 
 # Show
 ###
@@ -140,7 +165,6 @@ def show_Mark():
 #     print(" # Information about courses:")
 #     print(course)
 #     print()
-
 ###
 
 def marking():
@@ -183,6 +207,8 @@ def option():
         print("    +> 3. Show information about student")
         print("    +> 4. Show information about course")
         print("    +> 5. Show mark of students in courses")
+        print("    +> 6. Calculate GPA")
+        print("    +> 7. Show students are sorted by GPA")
         print("    +> 0. Type '0' ('zero') to quit")
 
         choose = input("      => Your option: ")
@@ -198,12 +224,16 @@ def option():
             show_Course()
         if (choose == "5"):
             show_Marks()
-
-
+        if (choose == "6"):
+            averageGPA()        
+        else:
+           print("error")
+            
 # Information()
 # # show_Student()
 # # show_Course()
 # mark_Course()
 # show_Marks()
+# averageGPA()
 option()
 # Std_Info.show_Std(self)
