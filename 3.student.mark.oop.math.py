@@ -154,6 +154,12 @@ def averageGPA():
     gpa +=[averageGPA()]
     gpa.sort()
 
+def show_gpa(gpa_list):
+    print("Student GPA")
+    print("ID\t\tName\t\tGPA")
+    for i in range(len(gpa_list)):
+        gpa_list[i].display()   
+
 # Show
 ###
 # def show_Student():
@@ -195,8 +201,7 @@ def show_Marks():
     print(" Here is the list of mark")
     print(mark)
     print()
-
-
+        
 def option():
     # Option: ########################################
 
