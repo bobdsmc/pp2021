@@ -1,0 +1,244 @@
+import math
+import curses
+
+student = []
+course = []
+mark = []
+gpa = []
+
+print("--------------------------------")
+print()
+
+
+class Std_Info():
+    def __init__(self, s_ID, s_Name, s_DoB):
+        self.s_ID = s_ID
+        self.s_Name = s_Name
+        self.s_DoB = s_DoB
+
+    #set
+    def set_s_Name(self,s_Name):
+        self.s_Name = s_Name
+    def set_s_ID(self,s_ID):
+        self.s_ID = s_ID
+    def set_s_DoB(self,S_Dob):
+        self.s_DoB = S_Dob
+
+    #get
+    def get_s_Name(self):
+        return self.s_Name
+    def get_s_ID(self):
+        return self.s_ID
+    def get_s_DoB(self):
+        return self.S_DoB
+
+class Course_Info():
+    def __init__(self, c_ID, c_Name):
+        self.c_ID = c_ID
+        self.c_Name = c_Name
+
+    #set
+    def set_c_Name(self,c_Name):
+        self.c_Name = c_Name
+    def set_c_ID(self,c_ID):
+        self.c_ID = c_ID
+
+    #get
+    def get_c_Name(self):
+        return self.c_Name
+    def get_c_ID(self):
+        return self.c_ID
+
+class mark_Course():
+
+    def __init__(self, s_ID, c_ID,mark):
+        self.s_ID = s_ID
+        self.c_ID = c_ID
+        self.mark = mark
+
+    #set
+    def set_s_ID(self,s_ID):
+        self.s_ID = s_ID
+    def set_c_ID(self,c_ID):
+        self.c_ID = c_ID
+    def set_mark(self,mark):
+        self.mark = mark
+
+    #get
+    def get_s_ID(self):
+        return self.s_ID
+    def get_c_ID(self):
+        return self.c_ID
+    def get_mark(self):
+        return self.mark
+        
+
+def add_Info():
+    # Input Student information ##############################
+    # Contain:
+    #     - ID
+    #     - Name
+    #     - Date of Birth
+    s_Num = int(input("How many students?\n  -> There are: "))
+    for i in range(s_Num):
+        Std_Info.s_ID = input("      - Student " + str(i + 1) + " ID: ")
+        Std_Info.s_Name = input("      - Student " + str(i + 1) + " Name: ")
+        Std_Info.s_DoB = ("      - Student " + str(i + 1) + " DoB: ")
+        student.append(
+            {"Student " + str(i + 1) + " Id": Std_Info.s_ID, "Student " + str(i + 1) + " Name": Std_Info.s_Name,
+             "Student " + str(i + 1) + " DoB": Std_Info.s_DoB})
+        print()
+        print("-----------------------------------------------------------------")
+
+    # Input Course information ###############################
+    # Contain:
+    #      - ID
+    #      - Name
+    c_Num = int(input("How many courses?\n  -> There are: "))
+    for i in range(c_Num):
+        print("    * Enter information about course " + str(i + 1) + ": ")
+        c_ID = input("      - Course " + str(i + 1) + " ID: ")
+        c_Name = input("      - Course " + str(i + 1) + " Name: ")
+        course.append({"Course " + str(i + 1) + "Id": c_ID, "Course " + str(i + 1) + "Name": c_Name})
+        print()
+        print("-----------------------------------------------------------------")
+
+
+# Ss = Std_Info(input("Something"))
+# Cc = Course_Info()
+# Mm = mark_Course
+
+def show_Student():
+    print("Student list: ")
+    for Std_Info in student:
+        Std_Info.show_Std()
+        print(student)
+
+
+def show_Course():
+    print("Course list: ")
+    for Course_Info in course:
+        print(Course_Info.show_C())
+        print(course)
+
+
+def show_Mark():
+    show_Student()
+    s_ID = input("Select Student: ")
+    for mark_Course in mark:
+        if (mark_Course.s_ID == s_ID):
+            mark_Course.show_M()
+
+class averageGPA():
+def __init__(self,id,name,gpa):
+    self.id = id
+    self.name = name
+    self.gpa = gpa
+    
+    def display(self):
+        print(self.id, end = "\t\t")
+        print(self.name, end = "\t\t")
+        print(self.gpa)
+        
+def averageGPA():
+    sum_credit = 0
+    total_mark = 0
+    for i in range(len(student)):
+        for j in range(len(course)):
+            total_mark += mark[i][j].get_mark * course[j].get_credit
+            sum_credit = course[j].get_credit
+    averageGPA = math.floor((total_mark/sum_credit * 10)/10)
+    return averageGPA
+
+    gpa = []
+    gpa +=[averageGPA()]
+    gpa.sort()
+
+def show_gpa(gpa_list):
+    print("Student GPA")
+    print("ID\t\tName\t\tGPA")
+    for i in range(len(gpa_list)):
+        gpa_list[i].display()   
+
+# Show
+###
+# def show_Student():
+#     print(" # Information about students:")
+#     print(student)
+#     print()
+
+# def show_Course():
+#     print(" # Information about courses:")
+#     print(course)
+#     print()
+###
+
+def marking():
+    print("-------------------------------")
+    print()
+
+    # Input for choosing:
+    #      - Student:      ###########################
+    show_Student()
+    print(" => Select student by ID:")
+    s_ID = input("    +> Option: ")
+    print("--------------------------------------------------------")
+
+    #      - Course:       ###########################
+    show_Course()
+    print(" => Select course by ID:")
+    c_ID = input("    +> Option: ")
+    print("--------------------------------------------------------")
+
+    # Mark #######################################
+    print()
+    m = input(" => Enter the mark: ")
+    mark.append({"Student ID": s_ID, "Course ID": c_ID, "Mark": m})
+    print()
+
+
+def show_Marks():
+    print(" Here is the list of mark")
+    print(mark)
+    print()
+        
+def option():
+    # Option: ########################################
+
+    while (True):
+        print("Select an option below: ")
+        print("    +> 1. Input information about student and course")
+        print("    +> 2. Input mark of student and course")
+        print("    +> 3. Show information about student")
+        print("    +> 4. Show information about course")
+        print("    +> 5. Show mark of students in courses")
+        print("    +> 6. Calculate GPA")
+        print("    +> 7. Show students are sorted by GPA")
+        print("    +> 0. Type '0' ('zero') to quit")
+
+        choose = input("      => Your option: ")
+        if (choose == "0"):
+            break
+        if (choose == "1"):
+            add_Info()
+        if (choose == "2"):
+            marking()
+        if (choose == "3"):
+            show_Student()
+        if (choose == "4"):
+            show_Course()
+        if (choose == "5"):
+            show_Marks()
+        if (choose == "6"):
+            averageGPA()        
+        else:
+           print("error")
+            
+# Information()
+# # show_Student()
+# # show_Course()
+# mark_Course()
+# show_Marks()
+# averageGPA()
+option()
+# Std_Info.show_Std(self)
